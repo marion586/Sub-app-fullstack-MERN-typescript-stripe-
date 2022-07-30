@@ -2,6 +2,7 @@ import express from "express";
 import authRoutes from "./routes/auth";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 dotenv.config();
 
 mongoose
@@ -12,6 +13,7 @@ mongoose
     //req.body is undefined , to git rid of this , we need declare thiscode below
     app.use(express.json());
 
+    app.use(cors());
     // to allow server to read variables inside .en file
 
     // app.get("/", (req, res) => res.send("hello world"));
