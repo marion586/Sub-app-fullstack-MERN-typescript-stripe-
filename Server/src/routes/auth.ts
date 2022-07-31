@@ -4,7 +4,7 @@ import { body, validationResult } from "express-validator";
 import User from "../Models/user";
 import bcrypt from "bcryptjs";
 import JWT from "jsonwebtoken";
-
+import { checkAuth } from "../Middleware/checkAuth";
 const router = express.Router();
 
 router.post(
@@ -101,6 +101,20 @@ router.post("/login", async (req, res) => {
     data: {
       token,
       user,
+    },
+  });
+});
+
+router.get("/me", checkAuth, async (req, res) => {
+  const user = await User.findOne({ email: req.user });
+
+  return res.json({
+    errors: [],
+    data: {
+      user: {
+        id: user?._id,
+        email: user?.email,
+      },
     },
   });
 });

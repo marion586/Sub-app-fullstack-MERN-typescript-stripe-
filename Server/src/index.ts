@@ -6,7 +6,8 @@ import cors from "cors";
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGO_URI as string)
+  // .connect(process.env.MONGO_URI as string)
+  .connect("mongodb://mongoadmin:mongopassword@localhost:27017/admin")
   .then(() => {
     console.log("connected to  mongodb");
     const app = express();
@@ -21,7 +22,7 @@ mongoose
     // we need to utilise our route  with some url base
     app.use("/auth", authRoutes);
 
-    app.listen(8081, () => {
+    app.listen(8088, () => {
       console.log(`Now listening to port 8081`);
     });
   })
