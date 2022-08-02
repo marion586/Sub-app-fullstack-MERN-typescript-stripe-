@@ -8,6 +8,7 @@ export const checkAuth = async (
   // req request from client
   //res response , just ability to response to client
   //next mean , everthing is fine  i gonna invoque this next function which mean go to the route handler or the next iddleware inside this middlware
+
   let token = req.header("authorization");
   if (!token) {
     return res.status(403).json({
@@ -21,6 +22,7 @@ export const checkAuth = async (
 
   token = token.split(" ")[1];
   try {
+    console.log(token);
     const user = (await JWT.verify(
       token,
       process.env.JWT_SECRET as string //it' s completely string
@@ -29,6 +31,7 @@ export const checkAuth = async (
     //take the request and set a propperty inside request
     //req.user =  user.email it fine with js but not with ts
     console.log(user);
+
     req.user = user.email;
     next();
   } catch (error) {
