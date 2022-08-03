@@ -1,4 +1,3 @@
-import { Msg } from "./../../node_modules/mongodb/src/cmap/commands";
 import express from "express";
 import { body, validationResult } from "express-validator";
 import User from "../Models/user";

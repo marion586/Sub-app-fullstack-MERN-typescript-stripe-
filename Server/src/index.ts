@@ -1,6 +1,7 @@
 import express from "express";
 import authRoutes from "./routes/auth";
 import subsRoutes from "./routes/subs";
+import articlesRoutes from "./routes/articles";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -23,6 +24,7 @@ mongoose
     // we need to utilise our route  with some url base
     app.use("/auth", authRoutes);
     app.use("/subs", subsRoutes);
+    app.use("/articles", articlesRoutes);
 
     app.listen(8088, () => {
       console.log(`Now listening to port 8081`);
